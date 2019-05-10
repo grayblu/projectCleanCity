@@ -42,8 +42,8 @@ public class CameraController {
 	}
 	
 	@GetMapping("/ipCam")
-	public void ipCam() {
-		
+	public String ipCam() {
+		return "ipCam";
 	}
 	
 	

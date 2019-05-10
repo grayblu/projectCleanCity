@@ -46,6 +46,7 @@ public class CameraView extends MjpegView implements Observer{
 	@Override
 	protected byte[] getImage() throws Exception {
 		// TODO Auto-generated method stub
+
 		return queue.take();
 	}
 	

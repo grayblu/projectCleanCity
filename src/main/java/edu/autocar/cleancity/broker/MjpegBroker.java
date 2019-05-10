@@ -44,13 +44,4 @@ public class MjpegBroker {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

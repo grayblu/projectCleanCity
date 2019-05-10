@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component("ipCam")
+@Component
 @Scope("request")
 public class IpCamView extends MjpegView{
 	
