@@ -17,6 +17,11 @@ import edu.autocar.cleancity.broker.MjpegBroker;
 @Controller
 public class CameraController {
 	
+	@GetMapping("/admin/monitor")
+	public void monitor() {
+	}
+
+	
 	@Autowired
 	MjpegBroker broker;
 
@@ -31,8 +36,9 @@ public class CameraController {
 	public boolean postCamera(@PathVariable("cameraId") int cameraId,
 							@RequestParam("image") MultipartFile image) {
 		try {
+			// System.out.println(image.getBytes().length + " 수신");
 			broker.update(cameraId, image.getBytes());
-			System.out.println(cameraId);
+
 			return true;
 		} catch (IOException e) {
 			// TODO: handle exception
@@ -41,18 +47,10 @@ public class CameraController {
 		}
 	}
 	
-	@GetMapping("/ipCam")
-	public String ipCam() {
-		return "ipCam";
+	@GetMapping("/admin/ipCam")
+	public void ipCam() {
 	}
 	
-	
-//	@PostMapping("/ipCam")
-//	public String postIpCam(Model model) throws Exception {
-//		byte[] data = view.getImage();
-//		model.addAttribute("image", data);
-//		return "ipCam";
-//	}
 	
 	
 }

@@ -13,8 +13,9 @@ abstract class MjpegView extends AbstractView{
 	protected void setHeader(HttpServletResponse response) {
 		response.setHeader("Cache-Control", "no-cache, private");
 		response.setContentType(
-						"multipart/x-mixed-replace:boundary=--boundary");
+						"multipart/x-mixed-replace;boundary=--boundary");
 	}
+	// 헤더의 contentType이 잘못 명시될 경우 response 에러 발생 
 	
 	public static final String NL = "\r\n";
 	public static final String BOUNDARY = "--boundary";
@@ -27,8 +28,8 @@ abstract class MjpegView extends AbstractView{
 		int size = image.length;
 		os.write((HEAD + size + NL + NL).getBytes());
 		os.write(image);
-		os.flush();
 		os.write((NL + NL).getBytes());
+		os.flush();
 	}
 	
 	protected void init(Map<String, Object> model, HttpServletResponse response) throws Exception {
@@ -52,9 +53,7 @@ abstract class MjpegView extends AbstractView{
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 * @throws Exception if rendering failed
-	 */
-
-	
+	 */	
 	
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, 
@@ -62,23 +61,33 @@ abstract class MjpegView extends AbstractView{
 			HttpServletResponse response) throws Exception {
 		
 		setHeader(response);
-		
 		init(model, response);
 		OutputStream os = response.getOutputStream();
+//		int count = 1;
 		try {
 			while(true) {
+
 				byte[] image = getImage();
 				sendImage(os, image);
+				
+				/** 파이카메라로 부터 전달받은 이미지를 저장
+				FileOutputStream fos = new FileOutputStream("C:/Temp/picam/picamImage"+ count + ".jpg");
+				count++;
+				fos.write(image);
+				fos.flush();
+				fos.close();
+				System.out.println("picamImage" + count+" 저장 완료");
+				**/
 			}
+
+			
 		} catch (Exception e) {
+			// System.out.println(e.getMessage());
+			e.printStackTrace();
 			cleanup();
 		}
 	}
 }
-
-
-
-
 
 
 

@@ -22,7 +22,7 @@
             <li><a href="${contextPath}/admin/form"> <i class="icon-form"></i>form</a></li>
             <li><a href="${contextPath}/admin/charts"> <i class="fa fa-bar-chart"></i>Charts</a></li>
             <li><a href="${contextPath}/admin/list"> <i class="icon-grid"></i>회원 현황</a></li>
-            <li> <a href="#"><i class="icon-screen"> </i>모니터링</a></li>
+            <li> <a href="${contextPath}/admin/monitor"><i class="icon-screen"> </i>모니터링</a></li>
             
             <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown </a>
               <ul id="exampledropdownDropdown" class="collapse list-unstyled ">

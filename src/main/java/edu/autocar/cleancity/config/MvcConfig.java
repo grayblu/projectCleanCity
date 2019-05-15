@@ -25,11 +25,10 @@ public class MvcConfig implements WebMvcConfigurer{
 	
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
-		
+		registry.viewResolver(new BeanNameViewResolver());		
 		TilesViewResolver viewResolver = new TilesViewResolver();
 		registry.viewResolver(viewResolver);
 		// 뷰의 이름을 빈의 이름으로 해석하는 리졸러 설정
-		registry.viewResolver(new BeanNameViewResolver());
 		// JSP 뷰 리졸러 설정
 		// 뷰 이름 앞,뒤에 붙일 prefix, surfix 설정
 		registry.jsp("/WEB-INF/views/", ".jsp");

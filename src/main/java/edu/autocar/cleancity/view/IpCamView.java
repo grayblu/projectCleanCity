@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("admin/ipCam")
 @Scope("request")
 public class IpCamView extends MjpegView{
 	
@@ -30,6 +30,7 @@ public class IpCamView extends MjpegView{
 		URL url = new URL(ipCamUrl);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		httpIn = new BufferedInputStream(conn.getInputStream(), 8192);
+		System.out.println(url+" 웹캠접속");
 	}
 	
 	public byte[] getImage() throws Exception{

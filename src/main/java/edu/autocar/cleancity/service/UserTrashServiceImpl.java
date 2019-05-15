@@ -15,9 +15,11 @@ public class UserTrashServiceImpl implements UserTrashService {
 	TrashDao dao;
 	
 	@Override
-	public List<UserTrash> getList(UserTrash userTrash) throws Exception {
-		return dao.getList(userTrash);
+	public List<UserTrash> getList(String userid) throws Exception {
+		return dao.getList(userid);
 	}
+	
+	
 
 
 }

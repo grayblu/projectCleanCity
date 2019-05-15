@@ -5,5 +5,5 @@ import java.util.List;
 import edu.autocar.cleancity.domain.UserTrash;
 
 public interface TrashDao {
-	List<UserTrash> getList(UserTrash userTrash) throws Exception;
+	List<UserTrash> getList(String userid) throws Exception;
 }

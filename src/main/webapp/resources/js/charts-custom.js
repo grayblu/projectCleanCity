@@ -2,23 +2,42 @@
 $(document).ready(function () {
 
     'use strict';
+    console.log('charts-custom 실행');
+//    var trashListJson = JSON.parse('${trash}');
+//	console.log('사용자쓰레기현황: ',trashListJson);
+
+    var list = $('#lineChartExample').text()
+    console.log(list);
+    var trashListJson = JSON.parse(list);
+	var cap = new Array();
+	var emptydate = new Array();
+	console.log('사용자쓰레기현황: ',trashListJson);
+	for(var ix in trashListJson){
+		cap[ix] = trashListJson[ix].cap
+		emptydate[ix] = trashListJson[ix].emptyDate
+		// console.log(trashListJson[ix].cap)
+	}
+
+
 
     var brandPrimary = 'rgba(51, 179, 90, 1)';
 
-    var LINECHARTEXMPLE   = $('#lineChartExample'),
-        PIECHARTEXMPLE    = $('#pieChartExample'),
-        BARCHARTEXMPLE    = $('#barChartExample'),
-        RADARCHARTEXMPLE  = $('#radarChartExample'),
-        POLARCHARTEXMPLE  = $('#polarChartExample');
-
+    var LINECHARTEXMPLE   = $('#lineChartExample');
+//        PIECHARTEXMPLE    = $('#pieChartExample'),
+//        BARCHARTEXMPLE    = $('#barChartExample'),
+//        RADARCHARTEXMPLE  = $('#radarChartExample'),
+//        POLARCHARTEXMPLE  = $('#polarChartExample');
+    
 
     var lineChartExample = new Chart(LINECHARTEXMPLE, {
         type: 'line',
         data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
+        	// empty date
+            labels: emptydate,
+            	// ["January", "February", "March", "April", "May", "June", "July"],	
             datasets: [
                 {
-                    label: "Data Set One",
+                    label: "쓰레기 수거량(단위:L)",
                     fill: true,
                     lineTension: 0.3,
                     backgroundColor: "rgba(51, 179, 90, 0.38)",
@@ -37,9 +56,15 @@ $(document).ready(function () {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
-                    data: [50, 20, 40, 31, 32, 22, 10],
+                    data: cap,
+                    	// [50, 20, 40, 31, 32, 22, 10],	// cap 입력값
                     spanGaps: false
-                },
+                }
+            ]
+        }
+    });
+});
+                /**,
                 {
                     label: "Data Set Two",
                     fill: true,
@@ -62,11 +87,9 @@ $(document).ready(function () {
                     pointHitRadius: 10,
                     data: [65, 59, 30, 81, 56, 55, 40],
                     spanGaps: false
-                }
-            ]
-        }
-    });
+                } **/
 
+/**
     var pieChartExample = new Chart(PIECHARTEXMPLE, {
         type: 'doughnut',
         data: {
@@ -216,7 +239,7 @@ $(document).ready(function () {
     var radarChartExample = {
         responsive: true
     };
+**/
 
 
 
-});

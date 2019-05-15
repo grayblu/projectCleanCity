@@ -36,6 +36,7 @@ public class MjpegBroker {
 	
 	synchronized
 	public void deleteObserver(int deviceId, Observer observer) {
+		System.out.println("delete Observer " + deviceId);
 		List<Observer> list = map.get(deviceId);
 		if(list != null) {
 			list.remove(observer);

@@ -40,17 +40,17 @@
                 <li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-envelope"></i><span class="badge badge-info">10</span></a>
                   <ul aria-labelledby="notifications" class="dropdown-menu">
                     <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
-                        <div class="msg-profile"> <img src="resources/img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="msg-profile"> <img src="${contextPath}/resources/img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
                         <div class="msg-body">
                           <h3 class="h5">Jason Doe</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
                         </div></a></li>
                     <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
-                        <div class="msg-profile"> <img src="resources/img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="msg-profile"> <img src="${contextPath}/resources/img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
                         <div class="msg-body">
                           <h3 class="h5">Frank Williams</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
                         </div></a></li>
                     <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
-                        <div class="msg-profile"> <img src="resources/img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="msg-profile"> <img src="${contextPath}/resources/img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
                         <div class="msg-body">
                           <h3 class="h5">Ashley Wood</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
                         </div></a></li>
@@ -58,10 +58,10 @@
                   </ul>
                 </li>
                 <!-- Languages dropdown    -->
-                <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><img src="img/flags/16/GB.png" alt="English"><span class="d-none d-sm-inline-block">English</span></a>
+                <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><img src="${contextPath}/resources/img/flags/16/GB.png" alt="English"><span class="d-none d-sm-inline-block">English</span></a>
                   <ul aria-labelledby="languages" class="dropdown-menu">
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="resources/img/flags/16/DE.png" alt="English" class="mr-2"><span>German</span></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="resources/img/flags/16/FR.png" alt="English" class="mr-2"><span>French                                                         </span></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="${contextPath}/resources/img/flags/16/DE.png" alt="English" class="mr-2"><span>German</span></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="${contextPath}/resources/img/flags/16/FR.png" alt="English" class="mr-2"><span>French                                                         </span></a></li>
                   </ul>
                 </li>
                 <!-- Log out-->

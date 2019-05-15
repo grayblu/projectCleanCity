@@ -6,6 +6,6 @@ import edu.autocar.cleancity.domain.UserTrash;
 
 public interface UserTrashService {
 	// 차트에 보여줄 쓰레기 수거 현황 조회
-	List<UserTrash> getList(UserTrash userTrash) throws Exception;
+	List<UserTrash> getList(String userid) throws Exception;
 
 }

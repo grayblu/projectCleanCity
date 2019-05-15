@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,7 +21,7 @@ public class CameraView extends MjpegView implements Observer{
 	@Autowired
 	MjpegBroker broker;	// Single camera와의 차이점
 	
-	BlockingQueue<byte[]> queue = new LinkedBlockingDeque<byte[]>(5);
+	BlockingQueue<byte[]> queue = new LinkedBlockingQueue<>(5);
 	
 	int deviceId;
 	
