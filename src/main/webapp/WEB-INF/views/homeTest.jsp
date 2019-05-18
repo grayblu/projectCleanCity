@@ -15,15 +15,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<style>
+
+</style>
 
 <title>자율주행</title>
 </head>
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark shadow fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="#">Clean City</a>
+    <a class="navbar-brand" href="${contextPath}">Clean City</a>
     <c:if test="${empty USER}">
 	    <a class="nav-link active" href="${contextPath}/user/login">
 		   	<i class="fas fa-sign-in-alt"></i> login</a>
@@ -43,7 +46,7 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home
+          <a class="nav-link" href="${contextPath}">Home
                 <span class="sr-only">(current)</span>
               </a>
         </li>
