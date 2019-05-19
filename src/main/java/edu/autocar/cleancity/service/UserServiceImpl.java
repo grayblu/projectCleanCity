@@ -8,11 +8,8 @@ import org.springframework.stereotype.Repository;
 import edu.autocar.cleancity.dao.UserDao;
 import edu.autocar.cleancity.domain.PageInfo;
 import edu.autocar.cleancity.domain.User;
-import edu.autocar.cleancity.domain.UserTrash;
-import lombok.extern.slf4j.Slf4j;
 
 @Repository
-@Slf4j
 public class UserServiceImpl implements UserService {
 	@Autowired
 	UserDao dao;
@@ -60,6 +57,9 @@ public class UserServiceImpl implements UserService {
 		return dao.getUsers();
 	}
 	
-	
+	@Override
+	public List<User> getCollectingList() throws Exception {
+		return dao.getCollectingList();
+	}
 
 }

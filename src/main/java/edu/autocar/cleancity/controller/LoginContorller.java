@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
-public class UserContorller {
+public class LoginContorller {
 	@Autowired
 	UserService service;
 	
@@ -48,18 +48,35 @@ public class UserContorller {
 		}
 
 		User searchedUser = service.getUser(loginInfo.getUserid());
-		// System.out.println("검색된 회원 " + searchedUser);
+
 		if (searchedUser != null) {
 			String target = loginInfo.getTarget();
+
 			if (searchedUser.getPasswd().equals(loginInfo.getPasswd())) {
 				HttpSession session = req.getSession();
-				session.setAttribute("USER", searchedUser);
-
-				if (target != null && !target.isEmpty()) {
-					return "redirect:" + target;
-				} else {
-					return "redirect:/";
+				
+				if (searchedUser.getIsAdmin() == 1) { // 관리자
+					System.out.println("관리자 로그인");
+					session.setAttribute("ADMIN", searchedUser);
+					
+					System.out.println("타겟 >> " + target);
+					
+					if (target != null && !target.isEmpty())
+						return "redirect:" + target;
+					else
+						return "redirect:/admin/main";
+				} else { // 일반 사용자
+					System.out.println("사용자 로그인");
+					session.setAttribute("USER", searchedUser);
+					
+					if (target != null && !target.isEmpty()) {
+						System.out.println("타겟 출력");
+						return "redirect:" + target;
+					} else {
+						return "redirect:/";
+					}
 				}
+				
 			}
 			return "redirect:" + target;
 		} else {

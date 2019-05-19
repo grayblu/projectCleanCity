@@ -36,12 +36,9 @@ public class CameraController {
 	public boolean postCamera(@PathVariable("cameraId") int cameraId,
 							@RequestParam("image") MultipartFile image) {
 		try {
-			// System.out.println(image.getBytes().length + " 수신");
 			broker.update(cameraId, image.getBytes());
-
 			return true;
 		} catch (IOException e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			return false;
 		}

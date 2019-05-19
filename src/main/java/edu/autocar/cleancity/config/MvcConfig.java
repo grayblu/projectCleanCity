@@ -5,12 +5,16 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.BeanNameViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+
+import edu.autocar.cleancity.interceptor.AdminInterceptor;
+import edu.autocar.cleancity.interceptor.LoginInterceptor;
 
 @Configuration	// 공통설정
 @EnableWebMvc	// SpringMvc 활성화
@@ -51,5 +55,28 @@ public class MvcConfig implements WebMvcConfigurer{
 		
 		return tilesConfigurer;
 	}
+	
+	@Bean
+	public LoginInterceptor loginInterceptor() {
+		return new LoginInterceptor();
+	}
+
+	@Bean
+	public AdminInterceptor adminInterceptor() {
+		return new AdminInterceptor();
+	}
+	
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(loginInterceptor())
+			.addPathPatterns(new String[] {"/user/mypage/*"})
+			.excludePathPatterns(new String[] {"/"});
+
+		registry.addInterceptor(adminInterceptor())
+			.addPathPatterns(new String[] {"/admin/**" })
+			.excludePathPatterns(new String[] {});
+	}
+	
+	
 	
 }

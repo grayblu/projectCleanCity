@@ -45,7 +45,7 @@
 
 <body>
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-		<a class="navbar-brand" href="/clean"><i class="fas fa-recycle"></i> 깨끗한도시</a>
+		<a class="navbar-brand" href="/clean"><i class="fas fa-recycle"></i>&nbsp;깨끗한도시</a>
 		<button class="navbar-toggler" data-toggle="collapse"
 			data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
@@ -67,9 +67,17 @@
 			<h3 class="m-3">
 				<i class="fas fa-sign-in-alt"></i> 로그인
 			</h3>
+			
+			<c:if test="${not empty loginInfo.target}">
+				<div class="alert alert-warning">
+					<strong>${loginInfo.reason}</strong>
+				</div>
+			</c:if>
+			
 			<form:form modelAttribute="loginInfo">
+				<form:hidden path="target"/>
 				<div class="form-group m-4">
-					<label for="userid"><i class="far fa-user"></i> 아이디</label>
+					<label for="userid"><i class="fas fa-user"></i> 아이디</label>
 					<form:input path="userid" class="form-control" />
 					<form:errors path="userid" element="div" cssClass="error" />
 				</div>
@@ -79,9 +87,10 @@
 					<form:errors path="passwd" element="div" cssClass="error" />
 				</div>
 				<div class="container text-center mt-4">
+					<form:errors element="div" cssClass="error mb-4" />
 					<button id="submitBtn" type="submit" class="btn btn-secondary">로그인</button>
-					<button id="cancleBtn" type="button" class="btn btn-danger">다시작성</button>
-				</div>
+					<button id="cancleBtn" type="button" class="btn btn-danger">다시작성</button>					
+				</div>				
 			</form:form>
 		</div>
 	</div>

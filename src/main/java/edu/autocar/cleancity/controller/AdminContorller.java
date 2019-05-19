@@ -3,17 +3,22 @@ package edu.autocar.cleancity.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
+import edu.autocar.cleancity.domain.HandleMsg;
 import edu.autocar.cleancity.domain.PageInfo;
+import edu.autocar.cleancity.domain.ResultMsg;
 import edu.autocar.cleancity.domain.User;
 import edu.autocar.cleancity.service.UserService;
 
@@ -60,14 +65,52 @@ public class AdminContorller {
 	@GetMapping("/admin/monitor")
 	public void getMonitor(Model model) throws Exception {
 		List<User> list = userService.getUsers();
-		//model.addAttribute("userList", list);
+
 		Gson gson = new Gson();
 		String gsonList = gson.toJson(list);
-		System.out.println(gsonList);
 		model.addAttribute("userList", gsonList);
-		System.out.println("---쓰레기통 설치 사용자 리스트---");
-		for(User user : list) {
-			System.out.println(user);
+	}
+	
+	@PostMapping("/capUpdate")
+	@ResponseBody
+	public ResponseEntity<ResultMsg> checkId(@RequestBody HandleMsg user) throws Exception {	    
+		System.out.println("사용자로부터 입력 받은 아이디 " + user.getUserid() + " 용량 :" + user.getCap());
+		User searchedUser = userService.getUser(user.getUserid());
+		System.out.println("검색된 회원 " + searchedUser);
+		
+		if (searchedUser != null) {
+			searchedUser.setCap(user.getCap());
+			userService.update(searchedUser);
+			return ResultMsg.response("ok", "갱신되었습니다.");
+		} else {
+			return ResultMsg.response("fail", "잘못된 접근입니다.");
 		}
+	}
+	
+	@GetMapping("/collectingList")
+	@ResponseBody
+	public ResponseEntity<ResultMsg> getCollectingList(Model model) throws Exception {
+		List<User> collectingList = userService.getCollectingList();
+		Gson gson = new Gson();
+		
+		if(collectingList.size() > 0) {
+			model.addAttribute("collectingList", gson.toJson(collectingList));
+			return ResultMsg.response("ok", gson.toJson(collectingList));
+		} else {
+			return ResultMsg.response("fail", gson.toJson(collectingList));
+		}
+	}
+	
+	@PostMapping("/admin/updateCollectingList")
+	@ResponseBody
+	public ResponseEntity<ResultMsg> postUpdateCollectingList(@RequestBody User user) throws Exception {
+		String updateCondition = user.getCondition();
+		User updatedUser = userService.getUser(user.getUserid());
+		updatedUser.setCondition(updateCondition);
+		
+		if(userService.update(updatedUser) > 0) {
+			return ResultMsg.response("ok", "리스트 추가 성공");
+		} else
+			return ResultMsg.response("fail", "리스트 추가 실패");
 	}
 }

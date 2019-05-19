@@ -43,7 +43,7 @@
 				dataType : "text",
 				success : function(data) {
 					data = JSON.parse(data);
-					console.log(data.result);
+					
 					if (data.result == 'ok') {
 						console.log(data.message);
 						msgSpan.html(data.message).removeClass('.error');
@@ -114,7 +114,7 @@
 </script>
 <body>
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-		<a class="navbar-brand" href="/clean"><i class="fas fa-recycle"></i> 깨끗한도시</a>
+		<a class="navbar-brand" href="/clean"><i class="fas fa-recycle"></i>&nbsp;깨끗한도시</a>
 		<button class="navbar-toggler" data-toggle="collapse"
 			data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
@@ -137,9 +137,9 @@
 			</h3>
 			<form:form modelAttribute="user">
 				<div class="form-group m-4">
-					<label for="userid"><i class="far fa-user"></i> 아이디</label>
+					<label for="userid"><i class="fas fa-user"></i> 아이디</label>
 					<button type="button" id="userIdCheck"
-						class="btn btn-dark m-2 id-check">
+						class="btn btn-dark btn-sm id-check">
 						<i class="fas fa-user-check"></i> 중복체크
 					</button>
 					<span id="message"></span>

@@ -12,34 +12,83 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/home.css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<script>
+	$(function() {
+		$("#loginBtn").on("click", function() {
+			console.log("${contextPath}/user/login")
+			location = '${contextPath}/user/login';
+		});
+		$('#joinBtn').on("click", function() {
+			location = '${contextPath}/user/join';
+		});
+	});
+</script>
 <style>
-
+	
+	body{
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+	
+	a {
+		color: white;
+	}
+	
 </style>
-
 <title>자율주행</title>
 </head>
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light bg-dark shadow fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="${contextPath}">Clean City</a>
-    <c:if test="${empty USER}">
-	    <a class="nav-link active" href="${contextPath}/user/login">
-		   	<i class="fas fa-sign-in-alt"></i> login</a>
-	    <a class="nav-link active" href="${contextPath}/user/join">
-		   	<i class="fas fa-sign-in-alt"></i> join</a>    
-		    
+<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="${contextPath}"><img class="img-circle" alt="main_icon" src="resources/img/truck.png" width="40" height="40">   클린시티</a>
+  	<c:if test="${empty USER && empty ADMIN}">
+		<ul class="nav navbar-nav float-lg-right">
+			<li class="nav-item mr-sm-2"><button id="loginBtn"
+					type="button" class="btn btn-light m-1">로그인</button></li>
+			<li class="nav-item mr-sm-2"><button id="joinBtn"
+					type="button" class="btn btn-light m-1">회원가입</button></li>
+		</ul>
+	</c:if>
+	<c:if test="${not empty USER}">
+		<ul class="nav navbar-nav float-lg-right">
+			<li class="nav-item mr-sm-2"><a class="nav-link"
+				href="${contextPath}/user/mypage/${USER.userid}"> <i class="fas fa-user"></i>${USER.userid}</a></li>
+
+			<li class="nav-item mr-sm-2"><a class="nav-link"
+				href="${contextPath}/user/logout"> <i
+					class="fas fa-sign-out-alt"></i>로그아웃
+			</a></li>
+		</ul>
+	</c:if>
+	<c:if test="${not empty ADMIN}">
+		<ul class="nav navbar-nav float-lg-right">
+			<li class="nav-item mr-sm-2"><a class="nav-link"
+				href="${contextPath}/admin/main"> <i class="fas fa-user"></i>${ADMIN.userid}</a></li>
+
+			<li class="nav-item mr-sm-2"><a class="nav-link"
+				href="${contextPath}/user/logout"> <i
+					class="fas fa-sign-out-alt"></i>로그아웃
+			</a></li>
+		</ul>
+	</c:if>
+    <!--<c:if test="${empty USER}">
+	    <a class="nav-link" href="${contextPath}/user/login">
+		   	Login</a>
+	    <a class="nav-link" href="${contextPath}/user/join">
+		   	Join</a>
     </c:if>
     <c:if test="${not empty USER}">
 		<a class="nav-link" href="${contextPath}/admin/main">
 			<i class="fas fa-user"></i> ${USER.userid}</a>
-		<a class="nav-link" href="${contextPath}/logout">
-			<i class="fas fa-sign-out-alt"></i> 로그아웃</a>
-    </c:if>
+		<a class="nav-link" href="${contextPath}/user/logout">
+			<i class="fas fa-sign-out-alt"></i> Logout</a>
+    </c:if> -->
+    
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
     </button>
@@ -56,9 +105,6 @@
         <li class="nav-item">
           <a class="nav-link" href="#services">Services</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
       </ul>
     </div>
   </div>
@@ -69,7 +115,7 @@
   <div class="container h-100">
     <div class="row h-100 align-items-center">
       <div class="col-12 text-center">
-        <h1 class="font-weight-light">클린 시티 프로젝트</h1>
+        <h1>클린 시티 프로젝트</h1>
         <p class="lead">자율주행을 활용한 IoT 쓰레기 수거 트럭 개발</p>
       </div>
     </div>

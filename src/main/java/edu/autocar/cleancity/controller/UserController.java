@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/{userid}")
-public class MypageController {
+public class UserController {
+	
+	@GetMapping("/user/mypage/{userid}")
+	public String getMyPage(@PathVariable String userid) throws Exception {
 		
-//	@GetMapping("mypage/{userId}")
-//	public String mypage(@PathVariable String userId, Model model) {
-//		System.out.println(userId);
-//		model.addAttribute("userId", userId);
-//		return "mypage";
-//	}
+		return "/user/mypage";
+	}
+
 	
 	@GetMapping("/index")
 	public String index() {

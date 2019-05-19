@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>DashBoard</title>
+    <title>ADMIN PAGE</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -34,17 +34,27 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	
 
 </head>
+
+<style>
+	
+	body {
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+</style>
 <body>
 	
-	<tiles:insertAttribute name="menu"/>
 	<div class="page">
 		<tiles:insertAttribute name="header"/>
+		<tiles:insertAttribute name="menu"/>
 		<tiles:insertAttribute name="body"/>
 		<tiles:insertAttribute name="footer"/>
-	</div>
+	
+	</div>		
+	
 
     <!-- JavaScript files-->
     <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>

@@ -31,4 +31,12 @@
 		 PHONE=#{phone} 
 		WHERE USERID=#{userid}
 	</update>
+	
+	<select id="getUsers" resultType="User">
+		SELECT * FROM CLEAN_USER WHERE BIN = 1 AND IS_ADMIN=0
+	</select>
+	
+	<select id="getCollectingList" resultType="User">
+		select * from clean_user where bin = 1 and condition = 'collecting'
+	</select>
 </mapper>

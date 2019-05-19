@@ -5,6 +5,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
+<style>
+.page-item.active .page-link {
+	background-color: #495057;
+}
+</style>
 <html>
       <!-- Breadcrumb-->
       <div class="breadcrumb-holder">
@@ -51,6 +56,21 @@
 					</c:forEach>
 				</tbody>
               </table>
+              <br/>
+              <ul class="pagination pagination-md justify-content-center mt-4">
+				<c:forEach var="idx" begin="1" end="${pi.totalPage }">
+					<c:choose>
+						<c:when test="${pi.page == idx}">
+							<li class="page-item active"><a class="page-link" style="background-color: #495057; border-color: #f8f9fa;"  
+								href="?page=${idx }">${idx }</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link"
+								href="?page=${idx }">${idx }</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			  </ul>
             </div>
           </div>
       </section>
