@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 
 import edu.autocar.cleancity.domain.User;
 import edu.autocar.cleancity.domain.UserTrash;
+import edu.autocar.cleancity.service.UserService;
 import edu.autocar.cleancity.service.UserTrashService;
 
 @Controller
@@ -20,24 +21,20 @@ public class UserTrashController {
 	
 	@Autowired
 	UserTrashService service;
+	@Autowired
+	UserService service1;
+
 	
 	@GetMapping("admin/charts")
 	public String UserTrashChart(HttpSession session, Model model) throws Exception {
-		//List<UserTrash> list = service.getList();
-		User user = (User)session.getAttribute("USER");
-		System.out.println("username: "+user.getUserid());
-		
-//		UserTrash userTrash = new UserTrash();
-//		userTrash.setUserid(user.getUserid());
-//		System.out.println("userTrash: "+userTrash);
-		List<UserTrash> userTrashList = service.getList(user.getUserid());
-		System.out.println("서비스 이후 userTrashList: "+ userTrashList);
+		List<UserTrash> userTrashList = service.getList("user1");
+//		System.out.println("서비스 이후 userTrashList: "+ userTrashList);
 //		System.out.println("-------------");
 //		for(UserTrash ut : userTrashList) {
 //			System.out.println("userTrashList: "+ut.getUserid()+"/cap: "+ut.getCap());
 //		}
 //		System.out.println("-------------")
-		//session.setAttribute("trash", userTrashList);
+//		session.setAttribute("trash", userTrashList);
 		Gson gson = new Gson();
 		String list = gson.toJson(userTrashList);
 		System.out.println("JSON 문자열로 변환: "+list);

@@ -17,11 +17,11 @@ import edu.autocar.cleancity.broker.MjpegBroker;
 @Controller
 public class CameraController {
 	
-	@GetMapping("/admin/monitor")
-	public void monitor() {
+	
+	@GetMapping("/admin/ipCam")
+	public void ipCam() {
 	}
 
-	
 	@Autowired
 	MjpegBroker broker;
 
@@ -43,10 +43,7 @@ public class CameraController {
 			return false;
 		}
 	}
-	
-	@GetMapping("/admin/ipCam")
-	public void ipCam() {
-	}
+
 	
 	
 	

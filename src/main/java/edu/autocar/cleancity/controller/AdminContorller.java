@@ -10,31 +10,45 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
+import edu.autocar.cleancity.dao.TrashDao;
 import edu.autocar.cleancity.domain.HandleMsg;
 import edu.autocar.cleancity.domain.PageInfo;
 import edu.autocar.cleancity.domain.ResultMsg;
 import edu.autocar.cleancity.domain.User;
+import edu.autocar.cleancity.domain.UserTrash;
 import edu.autocar.cleancity.service.UserService;
 
 @Controller
-@RequestMapping("/admin")
 public class AdminContorller {
 	
 	@Autowired
 	UserService userService;
 	
-	@GetMapping("/main")
-	public String getAdmin() {
+	Gson gson = new Gson();
+	
+	@GetMapping("/admin/main")
+	public String getAdmin(Model model) throws Exception {
+		int countUser = userService.count();
+		
+		List<User> list = userService.getUsers();
+		int countBin=0;
+		for (User user : list) {
+			if(user.getBin() == 1) {
+				countBin++;
+			}
+		}
+
+		model.addAttribute("UserSummary", countUser);
+		model.addAttribute("CountBin",countBin);
 		return "admin/main";
 	}
 	
-	@GetMapping("/list")
+	@GetMapping("/admin/list")
 	public String getList(@RequestParam(value="page", defaultValue="1") int page, Model model) throws Exception {
 		PageInfo<User> pi = userService.getPage(page);
 		model.addAttribute("pi", pi);		
@@ -42,7 +56,7 @@ public class AdminContorller {
 		return "admin/list";
 	}
 	
-	@GetMapping("/edit/{userid}")
+	@GetMapping("/admin/edit/{userid}")
 	public String getEdit(@PathVariable String userid, Model model) throws Exception {
 		User user = userService.getUser(userid);		
 		model.addAttribute("user", user);
@@ -50,7 +64,7 @@ public class AdminContorller {
 		return "admin/edit";
 	}
 	
-	@PostMapping("/edit/{userid}")
+	@PostMapping("/admin/edit/{userid}")
 	public String postEdit(@PathVariable String userid, User user, Model model) throws Exception {		
 		System.out.println("수정할 회원 " + user);
 		
@@ -62,16 +76,16 @@ public class AdminContorller {
 		}
 	}
 	
-	@GetMapping("/admin/monitor")
+	@GetMapping("/admin/1/monitor")
 	public void getMonitor(Model model) throws Exception {
 		List<User> list = userService.getUsers();
-
+		System.out.println(list.size());
 		Gson gson = new Gson();
 		String gsonList = gson.toJson(list);
 		model.addAttribute("userList", gsonList);
 	}
 	
-	@PostMapping("/capUpdate")
+	@PostMapping("/admin/capUpdate")
 	@ResponseBody
 	public ResponseEntity<ResultMsg> checkId(@RequestBody HandleMsg user) throws Exception {	    
 		System.out.println("사용자로부터 입력 받은 아이디 " + user.getUserid() + " 용량 :" + user.getCap());
@@ -87,7 +101,7 @@ public class AdminContorller {
 		}
 	}
 	
-	@GetMapping("/collectingList")
+	@GetMapping("/admin/collectingList")
 	@ResponseBody
 	public ResponseEntity<ResultMsg> getCollectingList(Model model) throws Exception {
 		List<User> collectingList = userService.getCollectingList();

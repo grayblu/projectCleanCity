@@ -5,12 +5,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
+<html>
 <style>
 .page-item.active .page-link {
 	background-color: #495057;
 }
 </style>
-<html>
+
       <!-- Breadcrumb-->
       <div class="breadcrumb-holder">
         <div class="container-fluid">
@@ -24,7 +25,7 @@
         <div class="container-fluid">
           <!-- Page Header-->
           <header> 
-            <h1 class="h3 display"><i class="icon-user"></i> 회원 현황            </h1>
+            <h1 class="h1 display"><i class="fas fa-user"></i> 회원 현황            </h1>
           </header>
             <div class="table-responsive">
               <table class="table table-striped">

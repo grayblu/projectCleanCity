@@ -6,6 +6,9 @@ import edu.autocar.cleancity.domain.PageInfo;
 import edu.autocar.cleancity.domain.User;
 
 public interface UserService {
+	
+	int count() throws Exception;
+	
 	PageInfo<User> getPage(int page) throws Exception;
 	
 	// 사용자 계정 조회

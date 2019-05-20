@@ -17,6 +17,12 @@ public class UserServiceImpl implements UserService {
 	static final int PER_PAGE_COUNT = 10;
 	
 	@Override
+	public int count() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.count();
+	}
+	
+	@Override
 	public PageInfo<User> getPage(int page) throws Exception {
 		int start = (page-1) * PER_PAGE_COUNT;
 		int end = start + PER_PAGE_COUNT;

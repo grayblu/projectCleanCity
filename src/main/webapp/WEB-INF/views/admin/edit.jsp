@@ -4,88 +4,31 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<!DOCTYPE html>
 <html>
-<head>
-<title>Home</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-a:link {
-	color: black;
-}
-
-a:visited {
-	color: black;
-}
-</style>
-</head>
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-
 <body>
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-		<a class="navbar-brand" href="/clean"><i class="fas fa-recycle"></i>
-			깨끗한도시</a>
-		<button class="navbar-toggler" data-toggle="collapse"
-			data-target="#collapsibleNavbar">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse flex-row-reverse"
-			id="collapsibleNavbar">
-			<c:if test="${empty ADMIN}">
-				<ul class="nav navbar-nav float-lg-right">
-					<li class="nav-item mr-sm-2"><button id="loginBtn"
-							type="button" class="btn btn-light m-1">로그인</button></li>
-					<li class="nav-item mr-sm-2"><button id="joinBtn"
-							type="button" class="btn btn-light m-1">회원가입</button></li>
-				</ul>
-			</c:if>
-			<c:if test="${not empty ADMIN}">
-				<ul class="nav navbar-nav float-lg-right">
-					<li class="nav-item mr-sm-2"><a class="nav-link"
-						href="${contextPath}/admin/"> <i class="fas fa-user"></i>${ADMIN.userid}</a></li>
-
-					<li class="nav-item mr-sm-2"><a class="nav-link"
-						href="${contextPath}/user/logout"> <i
-							class="fas fa-sign-out-alt"></i>로그아웃
-					</a></li>
-				</ul>
-			</c:if>
-		</div>
-	</nav>
-
-	<div class="container mt-5">
-		<ul class="nav nav-tabs nav-justified">
-			<li class="nav-item"><a class="nav-link active"
-				href="${contextPath}/admin/list"><i class="fas fa-user-friends"></i>
-					사용자 목록</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="${contextPath}/admin/monitor"><i class="fas fa-location-arrow"></i> 관제</a></li>
-			<li class="nav-item"><a class="nav-link" href="#"><i
-					class="fas fa-history"></i> 이용현황</a></li>
-		</ul>
-
-		<div class="jumbotron mt-5 mx-auto">
-			<h3 class="m-3">
-				<i class="fas fa-sign-in-alt"></i> 회원정보 수정
-			</h3>
+      <!-- Breadcrumb-->
+      <div class="breadcrumb-holder">
+        <div class="container-fluid">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="${contextPath}/admin/main">Home</a></li>
+            <li class="breadcrumb-item active">Edit       </li>
+          </ul>
+        </div>
+      </div>
+      <section>
+      <div class="container-fluid">
+	      <!-- Page Header-->
+          <header> 
+            <h1 class="h1 display"><i class="fas fa-sign-in-alt"></i> 회원정보 수정</h1>
+          </header>
 			<form:form modelAttribute="user">
 				<form:hidden path="userid" class="form-contorl" />
 				<form:hidden path="passwd" class="form-contorl" />
 
 				<div class="form-group m-4">
 					<h4>
-						<i class="fas fa-user"></i> ${user.userid}
+						<i class="fas fa-user"></i> 회원명: ${user.userid}
 					</h4>
 				</div>
 				<div class="form-group m-4">
@@ -128,6 +71,6 @@ a:visited {
 				</div>
 			</form:form>
 		</div>
-	</div>
+	</section>
 </body>
 </html>

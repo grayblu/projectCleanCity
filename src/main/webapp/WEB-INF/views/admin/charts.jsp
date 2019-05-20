@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<script src="${contextPath}/resources/js/charts-custom.js"></script>
 
       <!-- Breadcrumb-->
       <div class="breadcrumb-holder">
@@ -20,7 +21,7 @@
           </header>
           <div class="row">
           	<div class="col-10">
-	          <h1>${USER.userid}님의 쓰레기통 수거 현황</h1>
+	          <h1>회원 쓰레기통 수거 현황</h1>
 	          <div class="card line-chart-example">
 	            <div class="card-header d-flex align-items-center">
 	              <h4>일별 쓰레기 수거량</h4>

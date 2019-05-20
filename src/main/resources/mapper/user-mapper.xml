@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.autocar.cleancity.dao.UserDao">
 	<select id="count" resultType="int">
-		SELECT COUNT(*) FROM CLEAN_USER
+		SELECT COUNT(*) FROM CLEAN_USER where is_admin=0
 	</select>
 	
 	<select id="getPage" resultType="User">
-		select userid, passwd, email, address, lat, lon, bin, phone, reg_date, update_date 
-		from (select row_number() over(order by reg_date desc) as seq, userid, passwd, email, address, lat, lon, bin, phone, reg_date, update_date from clean_user)
-		where seq between #{start} and #{end}
+		select userid, is_admin, passwd, email, address, lat, lon, bin, phone, condition, reg_date, update_date 
+		from (select row_number() over(order by reg_date desc) as seq, userid, is_admin, passwd, email, address, lat, lon, bin, phone, condition, reg_date, update_date from clean_user)
+		where seq between #{start} and #{end} and is_admin=0
 	</select>
 	
 	<insert id="insert" parameterType="User">
