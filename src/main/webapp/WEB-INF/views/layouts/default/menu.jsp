@@ -18,7 +18,6 @@
           <ul id="side-main-menu" class="side-menu list-unstyled">
             <li><a href="${contextPath}/admin/main"> <i class="icon-home"></i>Home</a></li>
             <li><a href="${contextPath}/admin/list"> <i class="icon-grid"></i>회원 현황</a></li>
-            <li><a href="${contextPath}/admin/charts"> <i class="fa fa-bar-chart"></i>Charts</a></li>
             <li> <a href="${contextPath}/admin/monitor"><i class="icon-screen"> </i>모니터링</a></li>
           </ul>  
         </div>

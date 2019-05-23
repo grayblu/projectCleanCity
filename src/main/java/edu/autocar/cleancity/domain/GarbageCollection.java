@@ -9,9 +9,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserTrash {
-	private String userid;
-	private int cap;
-	private Date emptyDate;
+public class GarbageCollection {
+	int collectionNo;
+	String userid;
+	double cap;
+	String address;
+	Date emptyDate;
 	
 }

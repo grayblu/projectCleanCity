@@ -17,8 +17,11 @@ public interface UserService {
 	// 사용자 계정 생성
 	int create(User user) throws Exception;
 	
-	// 사용자 계정 업데이트
+	// 사용자 계정 업데이트(관리자)
 	int update(User user) throws Exception;
+	
+	// 사용자 정보 업데이트
+	boolean updateUser(User user) throws Exception;
 	
 	// 사용자 계정 삭제
 	boolean delete(User user) throws Exception;
@@ -28,4 +31,7 @@ public interface UserService {
 	
 	// 수십중인 쓰레기통 조회
 	List<User> getCollectingList() throws Exception;
+	
+	User checkPassword(String userId, String password) throws Exception;
+
 }

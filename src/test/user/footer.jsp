@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-      <footer class="main-footer">
+	  <!-- footer -->
+      <footer class="mt-5 p-3 text-white bg-dark">
         <div class="container-fluid">
           <div class="row">
             <div class="col-sm-6">

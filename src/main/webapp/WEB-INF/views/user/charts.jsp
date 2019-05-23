@@ -4,28 +4,27 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<!DOCTYPE html>
 <html>
 <head>
-<title>User Home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
 	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 <!-- Page font -->
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<!-- Chart -->
+<script src="${contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
+<script src="${contextPath}/resources/js/charts-custom.js"></script>
 
 </head>
-
 <style>
 	
 	body{
@@ -38,19 +37,19 @@
 	  bottom: 0;
 	  width: 100%;
 	}
-		
+
 </style>
+		
 
 <body>
 
-<!-- header -->
+	<!-- header -->
 	<header>
 		<nav class="navbar navbar-expand navbar-dark bg-dark">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="${contextPath}"> <img
-					class="img-circle" alt="main_icon"
-					src="${contextPath}/resources/img/truck.png" width="40" height="40">
-					깨끗한도시
+				<a class="navbar-brand" href="${contextPath}"> 
+				<img class="img-circle" alt="main_icon" src="${contextPath}/resources/img/truck.png" width="40" height="40">
+					클린시티
 				</a>
 				<button class="navbar-toggler" data-toggle="collapse"
 					data-target="#collapsibleNavbar">
@@ -88,14 +87,35 @@
 			<h4><i class="fas fa-info"></i>&nbsp;마이페이지</h4>
 			<br/>
 			<ul class="nav nav-tabs nav-justified">
-				<li class="nav-item"><a class="nav-link" href="${contextPath}/user/mypage/${USER.userid}/edit">정보수정</a>
+				<li class="nav-item"><a class="nav-link active" href="#">정보수정</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="#">쓰레기 수거요청</a></li>
-				<li class="nav-item"><a class="nav-link" href="${contextPath}/user/mypage/${USER.userid}/chart">이용 현황</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="${contextPath}/user/mypage/${USER.userid}/chart">이용 현황</a>
+				</li>
 			</ul>
+			<!-- Chart-->
+			<br>
+			<h5>
+				<i class="fas fa-user"></i>${USER.userid} 님의 쓰레기통 수거 현황
+			</h5>
+			<div class="row">
+				<div class="col-10 offset-1">
+					<div class="card line-chart-example">
+						<div class="card-header d-flex align-items-center">일별 쓰레기 수거량
+						</div>
+						<div class="card-body">
+							<canvas id="lineChartExample">${trash}</canvas>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
+		
+		
 	</div>
 	
+
+
 	<!-- footer -->
 	<footer class="mt-5 p-3 bg-dark text-white">
 		<div class="container-fluid">
@@ -114,5 +134,6 @@
 		</div>
 	</footer>
 	
-</body>
+</body>      
+
 </html>

@@ -176,7 +176,7 @@ a:visited {
 	
 	
 	$.fn.getUsers = function(map) {
-		console.log('사용자 목록 불러오기', ${userList});
+
 		console.log(map);
 		var userArray = JSON.parse('${userList}');		
 		var users = new Array();
@@ -270,7 +270,7 @@ a:visited {
 			return;
 		}
 		
-		var socket = new WebSocket("ws://localhost:8080/projectCleanCity/admin/monitor/data");
+		var socket = new WebSocket("ws://localhost:8080/projectCleanCity/admin/1/monitor/data");
 		
 		socket.onopen = function() {
 			console.log('웹소켓 접속 성공');

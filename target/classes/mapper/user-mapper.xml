@@ -28,8 +28,17 @@
 		 BIN=#{bin}, 
 		 LAT=#{lat}, 
 		 LON=#{lon},
-		 PHONE=#{phone} 
+		 PHONE=#{phone},
+		 condition=#{condition}  
 		WHERE USERID=#{userid}
+	</update>
+	
+	<update id="updateUser" parameterType="User">
+		UPDATE CLEAN_USER SET
+		 EMAIL=#{email}, 
+		 ADDRESS=#{address},  
+		 PHONE=#{phone}
+		WHERE USERID=#{userid} and passwd = #{passwd}
 	</update>
 	
 	<select id="getUsers" resultType="User">

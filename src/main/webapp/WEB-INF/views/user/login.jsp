@@ -6,7 +6,7 @@
 
 <html>
 <head>
-<title>Home</title>
+<title>Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <link rel="stylesheet"
@@ -15,12 +15,27 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js">
+<!-- Page font -->
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+<style>
 	
-</script>
+	body{
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+	
+	footer {
+	  position: fixed;
+	  left: 0;
+	  bottom: 0;
+	  width: 100%;
+	}
+
+</style>
 
 <script>
 	$.fn.cancle = function() {
@@ -44,38 +59,33 @@
 </script>
 
 <body>
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-		<a class="navbar-brand" href="/clean"><i class="fas fa-recycle"></i>&nbsp;깨끗한도시</a>
-		<button class="navbar-toggler" data-toggle="collapse"
-			data-target="#collapsibleNavbar">
-			<span class="navbar-toggler-icon"></span>
-		</button>
 
-		<div class="collapse navbar-collapse flex-row-reverse"
-			id="collapsibleNavbar">
-			<ul class="nav navbar-nav float-lg-right">
-				<li class="nav-item mr-sm-2"><button id="loginBtn"
-						type="button" class="btn btn-light m-1">로그인</button></li>
-				<li class="nav-item mr-sm-2"><button id="joinBtn" type="button"
-						class="btn btn-light m-1">회원가입</button></li>
-			</ul>
-		</div>
-	</nav>
+	<!-- header -->
+	<header>
+		<nav class="navbar navbar-expand navbar-dark bg-dark">
+		  <div class="container-fluid">
+		    <a class="navbar-brand" href="${contextPath}">
+		    	<img class="img-circle" alt="main_icon" src="${contextPath}/resources/img/truck.png" width="40" height="40">
+		    	깨끗한 도시
+			</a>
+		  </div>
+		</nav>
+	</header>
 	
-	<div class="container">
-		<div class="jumbotron">
+	<div class="jumbotron">
+		<div class="container-fluid col-md-8 content-justify-center">
 			<h3 class="m-3">
 				<i class="fas fa-sign-in-alt"></i> 로그인
 			</h3>
-			
+
 			<c:if test="${not empty loginInfo.target}">
 				<div class="alert alert-warning">
 					<strong>${loginInfo.reason}</strong>
 				</div>
 			</c:if>
-			
+
 			<form:form modelAttribute="loginInfo">
-				<form:hidden path="target"/>
+				<form:hidden path="target" />
 				<div class="form-group m-4">
 					<label for="userid"><i class="fas fa-user"></i> 아이디</label>
 					<form:input path="userid" class="form-control" />
@@ -89,10 +99,29 @@
 				<div class="container text-center mt-4">
 					<form:errors element="div" cssClass="error mb-4" />
 					<button id="submitBtn" type="submit" class="btn btn-secondary">로그인</button>
-					<button id="cancleBtn" type="button" class="btn btn-danger">다시작성</button>					
-				</div>				
+					<button id="cancleBtn" type="button" class="btn btn-danger">다시작성</button>
+				</div>
 			</form:form>
 		</div>
 	</div>
+
+	<!-- footer -->
+	<footer class="bg-dark mt-5 p-3 text-white">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-6">
+					깨끗한 도시 &copy; 2019.05.23
+				</div>
+				<div class="col-sm-6 text-right">
+						Design by <a
+							href="https://bootstrapious.com/p/bootstrap-4-dashboard"
+							class="external">Bootstrapious</a>
+					
+					<!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions and it helps me to run Bootstrapious. Thank you for understanding :)-->
+				</div>
+			</div>
+		</div>
+	</footer>
+	
 </body>
 </html>

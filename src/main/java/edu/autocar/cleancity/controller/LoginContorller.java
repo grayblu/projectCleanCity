@@ -78,11 +78,12 @@ public class LoginContorller {
 				}
 				
 			}
-			return "redirect:" + target;
-		} else {
-			result.reject("fail", "사용자 아이디 또는 비밀번호가 일치하지 않습니다.");
+			result.reject("fail", "비밀번호가 일치하지 않습니다.");
 			return "/user/login";
 		}
+			result.reject("fail", "사용자 아이디 또는 비밀번호가 일치하지 않습니다.");
+			return "/user/login";
+		
 	}
 
 

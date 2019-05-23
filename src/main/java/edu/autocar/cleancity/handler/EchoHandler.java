@@ -26,7 +26,7 @@ public class EchoHandler extends TextWebSocketHandler{
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		String rcvMsg = message.getPayload();
-		//System.out.println("페이로드 > " + rcvMsg);
+		System.out.println("페이로드 > " + rcvMsg);
 		HandleMsg handleMsg = gson.fromJson(rcvMsg, HandleMsg.class);
 		String msgType = handleMsg.getType();
 
@@ -51,8 +51,8 @@ public class EchoHandler extends TextWebSocketHandler{
 		} else if (msgType.equals("direction")) {
 			//System.out.println("파이로 보낼 메세지 > " + rcvMsg);
 			carSession.sendMessage(new TextMessage(rcvMsg));
-		} else if (msgType.equals("binData")) {
-			//System.out.println("브라우저 사이즈 > " + map.size());
+		} else if (msgType.equals("binData") || msgType.equals("collectedData")) {
+			System.out.println("bin or collectedData ");
 			TextMessage sendMsg = new TextMessage(rcvMsg);
 
 			Iterator<String> keys = map.keySet().iterator();

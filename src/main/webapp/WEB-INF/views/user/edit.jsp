@@ -4,10 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<!DOCTYPE html>
 <html>
 <head>
-<title>User Home</title>
+<title>Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
@@ -17,15 +19,9 @@
 <!-- Page font -->
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-
-</head>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 <style>
 	
 	body{
@@ -38,12 +34,12 @@
 	  bottom: 0;
 	  width: 100%;
 	}
-		
+
 </style>
 
 <body>
-
-<!-- header -->
+	
+	<!-- header -->
 	<header>
 		<nav class="navbar navbar-expand navbar-dark bg-dark">
 			<div class="container-fluid">
@@ -82,21 +78,62 @@
 			</div>
 		</nav>
 	</header>
-
+	
 	<div class="container">
 		<div class="jumbotron mt-5 content-center">
 			<h4><i class="fas fa-info"></i>&nbsp;마이페이지</h4>
 			<br/>
 			<ul class="nav nav-tabs nav-justified">
-				<li class="nav-item"><a class="nav-link" href="${contextPath}/user/mypage/${USER.userid}/edit">정보수정</a>
+				<li class="nav-item">
+					<a class="nav-link active" href="${contextPath}/user/mypage/${USER.userid}/edit">정보수정</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="#">쓰레기 수거요청</a></li>
-				<li class="nav-item"><a class="nav-link" href="${contextPath}/user/mypage/${USER.userid}/chart">이용 현황</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="${contextPath}/user/mypage/${USER.userid}/chart">이용 현황</a>
+				</li>
 			</ul>
+			<!-- User edit -->
+			<br>
+			<h1 class="h1 display"><i class="fas fa-sign-in-alt"></i> 회원정보 수정</h1>
+			<form:form modelAttribute="user">
+				<form:hidden path="userid" class="form-contorl" />
+				<div class="form-group m-4">
+					<h4>
+						<i class="fas fa-user"></i> 회원명: ${USER.userid}
+					</h4>
+				</div>
+				<div class="form-group m-4">
+					<label for="passwd">비밀번호</label>
+					<form:password path="passwd" class="form-control" />
+					<form:errors path="passwd" element="div" cssClass="error" />
+				</div>
+
+				<div class="form-group m-4">
+					<label for="email"><i class="fas fa-envelope"></i> 이메일</label>
+					<form:input tpye="email" path="email" class="form-control" />
+					<form:errors path="email" element="div" cssClass="error" />
+				</div>
+				<div class="form-group m-4">
+					<label for="address"><i class="fas fa-map-marker-alt"></i>
+						주소</label>
+					<form:input type="text" path="address" class="form-control" />
+					<form:errors path="address" element="div" cssClass="error" />
+				</div>
+				<div class="form-group m-4">
+					<label for="phone"><i class="fas fa-phone"></i> 전화번호</label>
+					<form:input type="phone" path="phone" class="form-control" />
+					<form:errors path="phone" element="div" cssClass="error" />
+				</div>
+				<div class="container text-center mt-4">
+					<button id="submitBtn" type="submit" class="btn btn-secondary">수정</button>
+					<button id="cancleBtn" type="button" class="btn btn-danger">다시작성</button>
+				</div>
+			</form:form>
+
 		</div>
 	</div>
 	
-	<!-- footer -->
+	
+		<!-- footer -->
 	<footer class="mt-5 p-3 bg-dark text-white">
 		<div class="container-fluid">
 			<div class="row">

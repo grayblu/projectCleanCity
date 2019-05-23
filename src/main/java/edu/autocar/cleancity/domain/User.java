@@ -18,6 +18,7 @@ public class User {
 	int isAdmin;
 	@NotEmpty(message="비밀번호를 입력하세요.")
 	String passwd;
+	String salt;
 	@NotEmpty(message="비밀번호를 확인해주세요.")
 	String passwdCheck;
 	@Email(message="email 형식이 아닙니다.")

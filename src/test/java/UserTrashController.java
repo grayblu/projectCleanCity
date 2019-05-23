@@ -1,33 +1,30 @@
-package edu.autocar.cleancity.controller;
 
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.google.gson.Gson;
 
-import edu.autocar.cleancity.domain.User;
-import edu.autocar.cleancity.domain.UserTrash;
+import edu.autocar.cleancity.domain.GarbageCollection;
 import edu.autocar.cleancity.service.UserService;
-import edu.autocar.cleancity.service.UserTrashService;
+import edu.autocar.cleancity.service.GarbageCollectionService;
 
-@Controller
+
 public class UserTrashController {
 	
 	@Autowired
-	UserTrashService service;
+	GarbageCollectionService service;
 	@Autowired
 	UserService service1;
 
 	
 	@GetMapping("admin/charts")
 	public String UserTrashChart(HttpSession session, Model model) throws Exception {
-		List<UserTrash> userTrashList = service.getList("user1");
+		List<GarbageCollection> userTrashList = service.getList("user1");
 //		System.out.println("서비스 이후 userTrashList: "+ userTrashList);
 //		System.out.println("-------------");
 //		for(UserTrash ut : userTrashList) {
